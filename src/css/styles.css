@@ -1,3 +1,7 @@
-body{
-    
+.headers{
+    font-family: 'Arial';
+    margin:0;
+}
+.accent-color{
+    color: yellowgreen;
 }

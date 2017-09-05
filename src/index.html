@@ -9,7 +9,30 @@
 
 <body>
 
-    <div id="growler"></div>
+    <div id="growler">
+        {{ appName }}
+        <h2 v-text="appName"></h2>
+        <h3 v-once="appName">This one wont change</h3>
+        <h3 v-html="rawHtml"></h3>
+
+        <h4>This shows how you bind to html attributes:</h4>
+        <img :src="appLogoPath" />
+
+        <h4 v-bind:style="{ 
+            color: appNameColor,
+            fontFamily: appNameFontFamily,
+            margin: 0
+         }">This shows how update style attributes automatically:</h4>
+
+        <h4 v-bind:style="appStyle">This is a cleaner version of the above example</h4>
+
+        <h4 v-bind:class="[accentColor, headers]">This example applies class names to this element</h4>
+
+        <h4 v-bind:class="{
+            'accent-color': true
+        }">This example applies a particular class name only if the bool is true</h4>
+
+    </div>
 
     <script type="text/javascript" src="//unpkg.com/vue@2.2.5/dist/vue.js"></script>
     <script type="text/javascript" src="//unpkg.com/axios/dist/axios.min.js"></script>
@@ -19,7 +42,18 @@
         var growler = new Vue({
             el: '#growler',
             data: {
-                appName: 'Growler'
+                appName: 'Growler',
+                rawHtml: '<a href="#">This is raw html</a>',
+                appLogoPath: '/public/logo.png',
+                appNameFontFamily: 'Arial',
+                appNameColor: 'red',
+                appStyle: {
+                    color: 'blue',
+                    fontFamily: 'Arial',
+                    margin: 0
+                },
+                accentColor: 'accent-color',
+                headers: 'headers'
             }
         });
     </script>

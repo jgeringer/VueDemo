@@ -1,0 +1,89 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Growler | Vue.js Demo</title>
+    <link rel="stylesheet" href="css/styles.css?v=1.0">
+</head>
+
+<body>
+
+    <div id="growler">
+        {{ appName }}
+        
+        <h3>Checbox example:</h3>
+        <label>
+            <input type="checkbox" value="beers" v-model="searchIndexes">
+            Beers
+        </label>
+        <br>        
+        <label>
+            <input type="checkbox" value="breweries" v-model="searchIndexes">
+            Breweries
+        </label>
+        <br>
+        <div>Selected Beverage: {{searchIndexes}}</div>
+
+
+        <h3>Radio button example:</h3>
+        <label>
+            <input type="radio" value="html" v-model="codeType">
+            HTML
+        </label>
+        <br>        
+        <label>
+            <input type="radio" value="css" v-model="codeType">
+            CSS
+        </label>
+        <br>
+        <div>Selected Code Type: {{codeType}}</div>
+
+        <h3>Select element</h3>
+        <select v-model="selectedSearchIndex">
+            <option value="beers">Beers</option>
+            <option value="breweries">Breweries</option>
+            <option value="distilleries">Distilleries</option>
+            <option value="pubs">Pubs</option>
+        </select>
+        <div>Selected Search Index: {{selectedSearchIndex}}</div>
+
+
+        <h3>Trim Modifier: Removes whitespace</h3>
+        <input type="text" v-model.trim="searchQueryWithTrim" placeholder="Search..." />
+        <div>Search Query (with trim): {{searchQueryWithTrim}}</div>
+
+        <h3>Number Modifier: Tries to get a Number object (instead of default string)</h3>
+        <input v-model.number="result" placeholder="2+3" />
+        <div>Result: {{result}}</div>
+
+        <h3>Lazily Binding Values: Fires onchange event - after an input loses focus</h3>
+        <input v-model.lazy.trim="query" placeholder="Search..." />
+        <div>Query (chaining both lazy and trim Modifiers): {{query}}</div>
+
+
+
+    </div>
+
+    <script type="text/javascript" src="//unpkg.com/vue@2.2.5/dist/vue.js"></script>
+    <script type="text/javascript" src="//unpkg.com/axios/dist/axios.min.js"></script>
+
+    <script>
+        //instanciating a Vue...
+        var growler = new Vue({
+            el: '#growler',
+            data: {
+                appName: 'Growler',
+                isPowerSyntaxEnabled: false,
+                searchIndexes: [],
+                codeType: 'css',
+                selectedSearchIndex: 'beers',
+                searchQueryWithTrim: '',
+                result: '',
+                query: ''
+            }
+        });
+    </script>
+
+</body>
+</html>
