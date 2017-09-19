@@ -1,0 +1,98 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Growler | Vue.js Demo</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+    [v-cloak] { display:none; }
+    </style>
+</head>
+
+<body>
+
+    <div id="growler">
+        <h3>Responding to User Events:</h3>
+        
+
+        <form>
+            
+            <div v-cloak>
+                <p>Version using v-if-else...</p>
+                <div v-if="beers.length === 0">No beers were returned</div>
+                <div v-else-if="beers.length === 1">1 beer was returned</div>
+                <div v-else>{{ beers.length }} beer was returned</div>
+
+                <p>Version using v-show...</p>
+                <div v-show="beers.length === 0">No Beers were returned</div>
+                <div v-show="beers.length > 0"> Beers were returned</div>
+
+                <p>Lists</p>
+                <ol>
+                    <li v-for="page in pageCount">
+                        <a href="#" v-on:click="search(page);">{{page}}</a>
+                    </li>
+                </ol>
+
+                <p>Lists: Nested</p>
+                <ol>
+                    <li v-for="(page, i) in pages">
+                        <a v-bind:href="page.url">{{page.number}}</a>
+                        <div v-for="sec in page.sections">
+                            {{page.number}}--{{sec}}
+                        </div>                        
+                        <small>index: {{ i }}</small>
+                    </li>
+                </ol>
+
+                <p>Lists: for and if</p>
+                <input type="range" v-model="maxAbv" min="0" max="30" />
+                <small>{{maxAbv}}%</small>
+                <ul>
+                    <li>Beers:</li>
+                    <li v-for="beer in beers" v-if="beer.abv < maxAbv">{{beer.name}} | {{beer.abv}}%</li>
+                </ul>
+
+            </div>
+
+        </form>
+
+    </div>
+
+    <script type="text/javascript" src="//unpkg.com/vue@2.2.5/dist/vue.js"></script>
+    <script type="text/javascript" src="//unpkg.com/axios/dist/axios.min.js"></script>
+
+    <script>
+        //instanciating a Vue...
+        var growler = new Vue({
+            el: '#growler',
+            data: {
+                query: '',
+                isRunning: false,
+                result: 'test using v-cloak',
+                beers: [
+                    { name: 'Bud Light', abv: 4 },
+                    { name: 'Miller Lite', abv: 5.1 },
+                    { name: 'Anti Hero', abv: 18.6 },
+                    { name: 'Modelo', abv: 10.8 }
+                ],
+                maxAbv: 7.0,
+                pageCount: 3,
+                pages: [
+                    { number: 1, url: '?page=1', sections: ['A', 'B', 'C']},
+                    { number: 2, url: '?page=2', sections: ['X', 'Y', 'Z']},
+                    { number: 3, url: '?page=3', sections: ['1', '2']}
+                ]
+            },            
+            
+            methods: {
+                search: function(pageNumber){
+                    alert('Loading page number: ' + pageNumber);            
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>

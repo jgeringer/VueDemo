@@ -1,0 +1,120 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Article Listing L2 - Flir.Local</title>
+    <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="google-site-verification" content="CJQNea8aWHMzDMq1VUltwFXdWLF29NVtnSQmDf6LjMs" />   
+
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+
+    <script src="main.js"></script>
+</head>
+<body class="Page">
+
+
+<div class="Article">
+    <h1>SEO Vue Test 2</h1>  
+    
+    <script>
+        var articleModel = {
+            picked: 'all',
+            filters: [
+                {
+                    'label': 'All',
+                    'selected': true,
+                    'value': 'all',
+                },
+                {
+                    'label': 'Hot Topics',
+                    'selected': false,
+                    'value': 'hottopics'
+                },
+                {
+                    'label': 'Product News',
+                    'selected': false,
+                    'value': 'productnews'
+                },
+                {
+                    'label': 'Featured',
+                    'selected': false,
+                    'value': 'featured'
+                },
+                {
+                    'label': 'Top Feature',
+                    'selected': false,
+                    'value': 'topfeature'
+                }
+            ],
+            listing: [
+                {
+                    'PrimaryImageUrl': '/globalassets/articles/solar-energy-hero.jpg',
+                    'Tags': 'In The News',
+                    'Title': 'Four Reasons Why Thermal Imaging Sensors are Ideal for Autonomous Driving Vehicles',
+                    'CTAText': 'Read the Story',
+                    'Url': '/en/article-listing-level-one/Article-Listing-L2/this-is-coming-from-js'
+                },
+                {
+                    'PrimaryImageUrl': '/globalassets/articles/solar-energy-hero.jpg',
+                    'Tags': 'In The News 2',
+                    'Title': 'Two Reasons Why',
+                    'CTAText': 'Read the Story',
+                    'Url': '/en/article-listing-level-one/Article-Listing-L2/four-reasons-why-thermal-imaging-sensors-are-ideal-for-autonomous-driving/'
+                }
+            ]
+        }
+    </script>    
+
+    <div class="Grid" id="articleListing" data-module="articlefilter">
+
+        
+        <div class="Grid-cell u-md-size1of4">
+            Filters: 
+            <div v-for="filter in filters">
+                <input v-model="picked" type="radio" name="tag" :value="filter.value" :id="filter.value" :checked="filter.selected" v-on:change="filterList(filter.label, filter.value)" />
+                <label :for="filter.value">{{filter.label}}</label>
+            </div>
+            <div>Picked: {{picked}}</div>
+        </div>
+
+        
+        <section class="ArticleSectionBlock Grid-cell u-md-size3of4">
+            
+            <div class="Grid Grid--gutterAlg u-marginBxlg">                
+                <div v-for="article in listing" class="Grid-cell u-md-size1of3 ArticleSectionBlock-item">
+                    <a :href="article.Url">Image was here
+                    </a>
+                    <div>
+                        <h6 v-cloak>{{ article.Tags }}</h6>
+                        <h4 class="Article-title">{{ article.Title }}</h4>
+                        <a :href="article.Url" class="Link--alt">Read the story</a>
+                    </div>
+                </div>
+            </div>
+            
+            <a v-on:click="loadMore" class="Button">View More</a>
+
+            
+
+
+        </section>
+    </div>        
+</div>
+
+    <footer class="Footer">
+		<div class="content-container">
+			<h4>Footer</h4>
+		</div>
+    </footer>
+
+    
+
+    
+</body>
+</html>

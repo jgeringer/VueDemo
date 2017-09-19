@@ -5,3 +5,13 @@
 .accent-color{
     color: yellowgreen;
 }
+.router-link-active {
+    color: red;
+  }
+  
+[v-cloak]{
+    display: none;
+}
+body{
+    background: gray;
+}

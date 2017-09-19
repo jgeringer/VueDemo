@@ -1,0 +1,84 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Growler | Vue.js Demo</title>
+    <link rel="stylesheet" href="css/styles.css?v=1.0">
+</head>
+
+<body>
+
+    <div id="growler">
+        <h3>Responding to User Events:</h3>
+        
+        <form>
+            <input type="search" 
+                v-model="query" 
+                v-on:keyup="evaluateKey"
+                v-on:keyup.enter="executeSearch" 
+                v-on:keyup.ctrl.enter="executeSearchInNewWindow" 
+                v-bind:disabled="isRunning"
+                placeholder="search..." />
+
+            <button type="button" 
+                v-on:click.prevent="executeSearch('token', $event)"  
+                v-bind:disabled="isRunning">
+                Search</button>
+
+            <!-- Prevent Default - Using the Prevent Modifier...
+            v-on:click="submit" 
+            v-on:click.prevent="submit"
+        
+            Reference the /img/modifier-impact.jpeg to see the different bubbling up modifiers and how they work.
+            -->
+
+        </form>
+
+    </div>
+
+    <script type="text/javascript" src="//unpkg.com/vue@2.2.5/dist/vue.js"></script>
+    <script type="text/javascript" src="//unpkg.com/axios/dist/axios.min.js"></script>
+
+    <script>
+        //instanciating a Vue...
+        var growler = new Vue({
+            el: '#growler',
+            data: {
+                query: '',
+                isRunning: false
+            },
+            methods: {
+                executeSearch: function (t, e){
+                    if(this.query){
+                        var msg = 'Token: ' + t + ' Query: ' + this.query + ' Button: ' + event.target.innerText;
+                        this.isRunning = true;
+                        alert(msg);
+                        document.forms[0].submit();
+                    } else{
+                        alert('please enter a query');
+                    }
+                },
+
+                evaluateKey: function(){
+
+                },
+
+                executeSearchInNewWindow: function(e){
+                    e.preventDefault();
+                    console.log('new window');
+                }
+
+                // $event variable:
+                // $event variable. reserved variable.
+                // Access to the HTML DOM Event
+
+                // Shorthand for events:
+                // instead of v-on:click=""
+                // use @click=""
+            }
+        });
+    </script>
+
+</body>
+</html>
