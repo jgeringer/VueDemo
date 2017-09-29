@@ -20,9 +20,15 @@
             
             <div v-cloak>
                 <p>Version using v-if-else...</p>
+
+                <transition name="fade">
+                        
                 <div v-if="beers.length === 0">No beers were returned</div>
                 <div v-else-if="beers.length === 1">1 beer was returned</div>
                 <div v-else>{{ beers.length }} beer was returned</div>
+
+            
+            </transition>
 
                 <p>Version using v-show...</p>
                 <div v-show="beers.length === 0">No Beers were returned</div>
@@ -61,6 +67,7 @@
     </div>
 
     <script type="text/javascript" src="//unpkg.com/vue@2.2.5/dist/vue.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/vuex/2.4.0/vuex.min.js"></script>
     <script type="text/javascript" src="//unpkg.com/axios/dist/axios.min.js"></script>
 
     <script>

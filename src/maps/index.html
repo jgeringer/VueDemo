@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Google Map Demo</title>
+    <style>
+        html{ height: 100%; }
+        body{ height: 100%; margin: 0; padding: 0; }
+        #mapDiv{ height: 100%; }
+    </style>
+</head>
+
+<body>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyARhi08mC1E7KNycThU2RjDanGZKZW5i0Y"></script>
+
+    <div id="mapDiv"></div>
+                
+    <script>
+        function initialize(){
+            var mapOptions = {
+                center: new google.maps.LatLng(0,0),
+                zoom: 4
+            };
+
+            var map = new google.maps.Map(document.getElementById("mapDiv"), mapOptions);
+        }
+
+        google.maps.event.addDomListener(window, "load", initialize);
+    </script>
+
+</body>
+</html>
